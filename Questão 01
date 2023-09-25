@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <locale.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main (){
+
+  setlocale(LC_ALL, "portuguese");
+
+  int idade;
+
+  int otimo = 0;
+
+  int maior_otimo = -1;
+
+  int bom = 0;
+
+  int regular = 0;
+
+  int ruim = 0;
+
+  int maior_ruim = -1;
+
+  int soma_ruim = 0;
+
+  int pessimo = 0;
+
+  srand(time(NULL));
+
+  char opiniao;
+
+  for(int i = 1; i <= 100; i++){
+
+    idade = rand() % (70 - 18 + 1) + 18;
+
+    char opcoes[] = {'A', 'B', 'C', 'D', 'E'};
+    opiniao = opcoes[rand() % 5];
+
+  if (opiniao == 'A') {
+
+            otimo++;
+
+            if (idade > maior_otimo) {
+
+                maior_otimo = idade;
+
+            }
+
+        } else if (opiniao == 'B') {
+
+            bom++;
+
+        } else if (opiniao == 'C') {
+
+            regular++;
+
+        } else if (opiniao == 'D') {
+
+            ruim++;
+
+            soma_ruim += idade;
+
+            if (idade > maior_ruim) {
+
+                maior_ruim = idade;
+
+            }
+
+        } else if (opiniao == 'E') {
+
+            pessimo++;
+
+            if (idade > maior_ruim) {
+
+                maior_ruim = idade;
+
+
+
+            }
+
+
+        }
+
+  
+  }
+
+  float diferenca_percentual = ((float)bom / 100 - (float)regular / 100) * 100;
+
+    float media_ruim = (float)soma_ruim / ruim;
+
+    float percentagem_pessimo = (float)pessimo / 100;
+
+    int diferenca_idade = maior_otimo - maior_ruim;
+
+    printf("\nQuantidade de respostas Ótimo: %d\n", otimo);
+
+    printf("\nDiferença percentual entre respostas Bom e Regular: %.2f%%\n", diferenca_percentual);
+
+    printf("\nMédia de idade das pessoas que responderam Ruim: %.2f\n", media_ruim);
+
+    printf("\nPercentagem de respostas Péssimo: %.2f%%\n", percentagem_pessimo);
+
+    printf("\nMaior idade que utilizou a opção Péssimo: %d\n", maior_ruim);
+
+    printf("\nDiferença de idade entre a maior idade que respondeu Ótimo e Ruim: %d\n", diferenca_idade);
+
+
+  
+
+  
+}
